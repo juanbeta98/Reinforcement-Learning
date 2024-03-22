@@ -1,7 +1,7 @@
 # Reinforcement-Learning
-A collection of resources on my exploratory journey with Reinforcement Learning.
+This repository is a collection of resources that I've gathered during my journey with Reinforcement Learning.
 
-- [Jupyter Notebooks](https://github.com/juanbeta98/Reinforcement-Learning/tree/main/Jupyter%20Notebooks) contains synthesized theorical and practical content.
-- [Labs](https://github.com/juanbeta98/Reinforcement-Learning/tree/main/Lab) includes files of _stuff_ I'm currently working on. 
+- [Jupyter Notebooks](https://github.com/juanbeta98/Reinforcement-Learning/tree/main/Jupyter%20Notebooks): A variety of Jupyter Notebooks with both theoretical content and practical implementations.
+- [Lab](https://github.com/juanbeta98/Reinforcement-Learning/tree/main/Lab): Files related to ongoing projects and experiments that I'm currently working on.
 
 
