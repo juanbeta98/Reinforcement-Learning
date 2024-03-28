@@ -96,7 +96,7 @@ class Q_Learning_Agent():
 
 
     @staticmethod
-    def decay_epsilon(epsilon: float, episode: int, START_EPSILON_DECAYING: int, END_EPSILON_DECAYING: int) -> float:
+    def decay_epsilon(epsilon: float, episode: int, epsilon_decaying_value:float, START_EPSILON_DECAYING: int, END_EPSILON_DECAYING: int) -> float:
         """
         Decay the exploration rate epsilon linearly over a specified range of episodes.
 
@@ -111,7 +111,7 @@ class Q_Learning_Agent():
         """
         if END_EPSILON_DECAYING >= episode >= START_EPSILON_DECAYING:
             # Linearly decay epsilon over the specified range of episodes
-            epsilon -= epsilon / (END_EPSILON_DECAYING - START_EPSILON_DECAYING)
+            epsilon -= epsilon_decaying_value
         return epsilon
 
 
@@ -148,8 +148,11 @@ class Q_Learning_Agent():
 class visualizations():
     @staticmethod
     def plot_series(series_list, labels, **kwargs):
-        colors = plt.cm.tab10(np.linspace(0, 1, len(series_list)))
+        colors = plt.cm.viridis(np.linspace(0, 1, len(series_list)))
 
+        if labels == ['epsilon']:
+            colors = ['gold']
+            
         # Plot the original series and the moving average for each
         plt.figure(figsize=(10, 6))
         for i, series_list in enumerate(series_list):
@@ -178,7 +181,7 @@ class visualizations():
         # Compute the moving average for each series
         moving_avg = df.rolling(window=window_size).mean()
         
-        colors = plt.cm.tab10(np.linspace(0, 1, len(moving_avg.columns)))
+        colors = plt.cm.viridis(np.linspace(0, 1, len(moving_avg.columns)))
 
         # Plot the original series and the moving average for each
         plt.figure(figsize=(10, 6))
