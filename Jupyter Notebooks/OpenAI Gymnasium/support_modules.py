@@ -57,7 +57,7 @@ class Q_Learning_Agent():
 
 
     @staticmethod
-    def get_discrete_state(state, env:gym.Env, state_intervals) -> tuple:
+    def get_discrete_state(state, env:gym.Env, state_intervals, partitions:int) -> tuple:
         """
         Convert a continuous state into a discrete state representation.
 
@@ -71,9 +71,16 @@ class Q_Learning_Agent():
         """
         # Calculate the discrete state using intervals
         discrete_state = (state - env.observation_space.low) / state_intervals
+
+        corrected_state = list()
+        for component in discrete_state:
+            if component == partitions:
+                corrected_state.append(component-1)
+            else:
+                corrected_state.append(component)
         
         # Convert to integer and return as a tuple
-        return tuple(discrete_state.astype(int))
+        return tuple(np.array(corrected_state).astype(int))
 
 
     @staticmethod
