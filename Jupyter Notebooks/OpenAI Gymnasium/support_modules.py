@@ -4,6 +4,24 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 
+def evaluate_done(terminated:bool, truncated:bool) -> bool:
+    """
+    Define the termination condition for an episode based on termination and truncation flags.
+
+    Parameters:
+    - terminated (bool): Flag indicating whether the episode is terminated.
+    - truncated (bool): Flag indicating whether the episode is truncated.
+
+    Returns:
+    - done (bool): True if the episode is done, False otherwise.
+    """
+    # If either terminated or truncated is True, the episode is done
+    if terminated or truncated:
+        return True
+    else:
+        return False
+        
+        
 class Q_Learning_Agent():
     @staticmethod
     def generate_discrete_states(partitions:int, env:gym.Env) -> tuple:
@@ -81,25 +99,6 @@ class Q_Learning_Agent():
         
         # Convert to integer and return as a tuple
         return tuple(np.array(corrected_state).astype(int))
-
-
-    @staticmethod
-    def evaluate_done(terminated:bool, truncated:bool) -> bool:
-        """
-        Define the termination condition for an episode based on termination and truncation flags.
-
-        Parameters:
-        - terminated (bool): Flag indicating whether the episode is terminated.
-        - truncated (bool): Flag indicating whether the episode is truncated.
-
-        Returns:
-        - done (bool): True if the episode is done, False otherwise.
-        """
-        # If either terminated or truncated is True, the episode is done
-        if terminated or truncated:
-            return True
-        else:
-            return False
 
 
     @staticmethod
