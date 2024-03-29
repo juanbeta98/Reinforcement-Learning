@@ -123,7 +123,7 @@ class Q_Learning_Agent():
 
 
     @staticmethod
-    def update_q_table(q_table: np.ndarray, discrete_state: tuple, new_discrete_state: tuple, action: int,
+    def update_q_table(q_table: np.ndarray, state: tuple, new_state: tuple, action: int,
                     reward: float, LEARNING_RATE: float, DISCOUNT: float) -> np.ndarray:
         """
         Update the Q-table based on the observed reward and the transition to a new state.
@@ -140,14 +140,14 @@ class Q_Learning_Agent():
         Returns:
         - q_table (np.ndarray): The updated Q-table.
         """
-        max_future_q = np.max(q_table[new_discrete_state])  # Maximum Q-value for the new state
-        current_q = q_table[discrete_state + (action,)]     # Q-value for the current state-action pair
+        max_future_q = np.max(q_table[new_state])  # Maximum Q-value for the new state
+        current_q = q_table[state + (action,)]     # Q-value for the current state-action pair
 
         # Update the Q-value for the current state-action pair using the Q-learning formula
         new_q = (1 - LEARNING_RATE) * current_q + LEARNING_RATE * (reward + DISCOUNT * max_future_q)
 
         # Update the Q-value in the Q-table
-        q_table[discrete_state + (action,)] = new_q
+        q_table[state + (action,)] = new_q
 
         return q_table
 
