@@ -67,7 +67,7 @@ class Q_Learning_Agent():
         elif init_strategy == 'zeros':
             q_table = np.zeros(shape=(discrete_state_space, env.action_space.n))
         elif init_strategy == 'init_value':
-            q_table = np.full(shape=(discrete_state_space, env.action_space.n), fill_value=kwargs['value'])
+            q_table = np.full(shape=(discrete_state_space + [env.action_space.n]), fill_value=kwargs['value'])
         else:
             raise ValueError(f"Invalid initialization strategy: {init_strategy}")
 
