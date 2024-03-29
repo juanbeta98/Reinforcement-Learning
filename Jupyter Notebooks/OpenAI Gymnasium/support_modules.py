@@ -65,7 +65,7 @@ class Q_Learning_Agent():
         if init_strategy == 'random':
             q_table = np.random.uniform(low=kwargs['low'], high=kwargs['high'], size=(discrete_state_space + [env.action_space.n]))
         elif init_strategy == 'zeros':
-            q_table = np.zeros(shape=(discrete_state_space, env.action_space.n))
+            q_table = np.zeros(shape=(discrete_state_space + [env.action_space.n]))
         elif init_strategy == 'init_value':
             q_table = np.full(shape=(discrete_state_space + [env.action_space.n]), fill_value=kwargs['value'])
         else:
