@@ -1,0 +1,5 @@
+numpy
+pandas
+gymnasium
+tensorflow
+ipywidgets
