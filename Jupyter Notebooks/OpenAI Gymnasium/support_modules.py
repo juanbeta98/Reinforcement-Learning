@@ -46,7 +46,7 @@ class Q_Learning_Agent():
 
 
     @staticmethod
-    def generate_q_table(init_strategy:str, env:gym.Env, discrete_state_space:list, **kwargs) -> np.ndarray:
+    def generate_q_table(init_strategy:str, discrete_action_space:int, discrete_state_space:list, **kwargs) -> np.ndarray:
         """
         Generate a Q-table for the given environment and initialization strategy.
 
@@ -63,14 +63,15 @@ class Q_Learning_Agent():
         """
         # Check the initialization strategy and create the Q-table accordingly
         if init_strategy == 'random':
-            q_table = np.random.uniform(low=kwargs['low'], high=kwargs['high'], size=(discrete_state_space + [env.action_space.n]))
+            q_table = np.random.uniform(low=kwargs['low'], high=kwargs['high'], size=(discrete_state_space + [discrete_action_space]))
         elif init_strategy == 'zeros':
-            q_table = np.zeros(shape=(discrete_state_space + [env.action_space.n]))
+            q_table = np.zeros(shape=(discrete_state_space + [discrete_action_space]))
         elif init_strategy == 'init_value':
-            q_table = np.full(shape=(discrete_state_space + [env.action_space.n]), fill_value=kwargs['value'])
+            q_table = np.full(shape=(discrete_state_space + [discrete_action_space]), fill_value=kwargs['value'])
         else:
             raise ValueError(f"Invalid initialization strategy: {init_strategy}")
 
+        
         return q_table
 
 
