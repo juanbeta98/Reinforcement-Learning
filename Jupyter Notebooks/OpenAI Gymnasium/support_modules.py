@@ -103,7 +103,7 @@ class Q_Learning_Agent():
 
 
     @staticmethod
-    def decay_epsilon(epsilon: float, episode: int, epsilon_decaying_value:float, START_EPSILON_DECAYING: int, END_EPSILON_DECAYING: int) -> float:
+    def linear_epsilon_decay(epsilon: float, episode: int, epsilon_decaying_value:float, START_EPSILON_DECAYING: int, END_EPSILON_DECAYING: int) -> float:
         """
         Decay the exploration rate epsilon linearly over a specified range of episodes.
 
@@ -120,6 +120,19 @@ class Q_Learning_Agent():
             # Linearly decay epsilon over the specified range of episodes
             epsilon -= epsilon_decaying_value
         return epsilon
+    
+
+    @staticmethod
+    def exponential_epsilon_decay(epsilon, episode, end_decay_episode):
+        decay_rate = 0.95  # You can adjust this decay rate as needed
+        
+        if episode < end_decay_episode:
+            epsilon *= decay_rate ** episode
+        else:
+            epsilon = 0  # Set epsilon to 0 after the decay episode
+            
+        return epsilon
+
 
 
     @staticmethod
